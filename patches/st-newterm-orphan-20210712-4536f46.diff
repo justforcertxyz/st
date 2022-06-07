@@ -36,7 +36,7 @@ index 6f05dce..9029e8d 100644
  	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 +	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
  };
- 
+
  /*
 diff --git a/st.c b/st.c
 index ebdf360..cb79bc0 100644
@@ -44,7 +44,7 @@ index ebdf360..cb79bc0 100644
 +++ b/st.c
 @@ -153,6 +153,7 @@ typedef struct {
  } STREscape;
- 
+
  static void execsh(char *, char **);
 +static char *getcwd_by_pid(pid_t pid);
  static void stty(char **);
@@ -53,7 +53,7 @@ index ebdf360..cb79bc0 100644
 @@ -1060,6 +1061,37 @@ tswapscreen(void)
  	tfulldirt();
  }
- 
+
 +void
 +newterm(const Arg* a)
 +{
@@ -95,11 +95,10 @@ index fa2eddf..b13399b 100644
 @@ -81,6 +81,7 @@ void die(const char *, ...);
  void redraw(void);
  void draw(void);
- 
+
 +void newterm(const Arg *);
  void printscreen(const Arg *);
  void printsel(const Arg *);
  void sendbreak(const Arg *);
--- 
+--
 2.32.0
-
